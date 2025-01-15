@@ -1,0 +1,22 @@
+<div>
+  <div>
+    @for (skill of selectedSkills; track skill) {
+      <span>{{skill}}, </span>
+    }
+  </div>
+</div>
+<div>
+  <input placeholder="Suchen...">
+  <div id="skills">
+    @for (skill of selectedSkills; track skill) {
+      <span>{{skill}} x</span>
+    }
+  </div>
+  <hr>
+  <div>
+    <span>Java</span>
+    <span>Javascript</span>
+    <span>Python</span>
+    <span>C++</span>
+  </div>
+</div>
