@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <section>
+    <div>
+      <img src="favicon.ico" height="100px" width="100px">
+      <button type="button">HOCHLADEN</button>
+    </div>
+  </section>
+  <section>
+    <div>
+      <label for="firstName">Vorname</label>
+      <input id="firstName" type="text" formControlName="firstName" />
+      <div *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
+        <span *ngIf="form.get('firstName')?.errors?.['required']">Vorname ist erforderlich.</span>
+      </div>
+    </div>
+    <div>
+      <label for="lastName">Nachname</label>
+      <input id="lastName" type="text" formControlName="lastName" />
+      <div *ngIf="form.get('lastName')?.touched && form.get('lastName')?.invalid">
+        <span *ngIf="form.get('lastName')?.errors?.['required']">Nachname ist erforderlich.</span>
+      </div>
+    </div>
+    <div>
+      <label for="phone">Telefonnummer</label>
+      <input id="phone" type="tel" formControlName="phone" />
+      <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid">
+        <span *ngIf="form.get('phone')?.errors?.['required']">Telefonnummer ist erforderlich.</span>
+        <span *ngIf="form.get('phone')?.errors?.['pattern']">
+          Telefonnummer muss ein gültiges Format haben.
+        </span>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div>
+      <label for="address">Adresse</label>
+      <input id="address" type="text" formControlName="address" />
+      <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid">
+        <span *ngIf="form.get('address')?.errors?.['required']">Adresse ist erforderlich.</span>
+      </div>
+    </div>
+    <div>
+      <label for="city">Stadt</label>
+      <input id="city" type="text" formControlName="city" />
+      <div *ngIf="form.get('city')?.touched && form.get('city')?.invalid">
+        <span *ngIf="form.get('city')?.errors?.['required']">Stadt ist erforderlich.</span>
+      </div>
+    </div>
+    <div>
+      <label for="zip">PLZ</label>
+      <input id="zip" type="text" formControlName="zip" />
+      <div *ngIf="form.get('zip')?.touched && form.get('zip')?.invalid">
+        <span *ngIf="form.get('zip')?.errors?.['required']">PLZ ist erforderlich.</span>
+        <span *ngIf="form.get('zip')?.errors?.['pattern']">PLZ muss ein gültiges Format haben.</span>
+      </div>
+    </div>
+    <div>
+      <button type="button">Hinzufügen</button>
+    </div>
+  </section>
+</form>

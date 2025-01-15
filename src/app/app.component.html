@@ -1,2 +1,8 @@
-<app-employee-list></app-employee-list>
-
+<!-- app.component.html -->
+<div>
+  <nav>
+    <a routerLink="/add-employee">Add Employee</a>
+    <a [routerLink]="['/employee', 23]">Edit</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
