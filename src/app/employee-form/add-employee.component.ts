@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
+import {FormSkillSelectorComponent} from "../elements/form-skill-selector/form-skill-selector.component";
 
 @Component({
   selector: 'app-add-employee',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormSkillSelectorComponent
   ],
   templateUrl: './add-employee.component.html',
   styleUrl: './add-employee.component.css'
 })
-export class AddEmployeeComponent {
+export class AddEmployeeComponent implements OnInit {
   form: FormGroup;
+  isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {
     this.form = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -32,5 +36,15 @@ export class AddEmployeeComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      if (params.get('id') === null) {
+        this.isEditMode = false;
+      } else {
+        this.isEditMode = true;
+      }
+    });
   }
 }

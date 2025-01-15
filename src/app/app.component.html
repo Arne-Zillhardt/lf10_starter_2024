@@ -1,8 +1,10 @@
 <!-- app.component.html -->
 <div>
   <nav>
+    <a routerLink="/employees">Employees</a>
+    <a routerLink="/skills">Skills</a>
     <a routerLink="/add-employee">Add Employee</a>
-    <a [routerLink]="['/employee', 23]">Edit</a>
+    <a [routerLink]="['/edit-employee', 23]">Edit</a>
   </nav>
   <router-outlet></router-outlet>
 </div>

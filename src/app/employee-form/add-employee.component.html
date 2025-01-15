@@ -1,12 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <section>
     <div>
-      <img src="favicon.ico" height="100px" width="100px">
-      <button type="button">HOCHLADEN</button>
-    </div>
-  </section>
-  <section>
-    <div>
       <label for="firstName">Vorname</label>
       <input id="firstName" type="text" formControlName="firstName" />
       <div *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
@@ -29,6 +23,10 @@
           Telefonnummer muss ein gültiges Format haben.
         </span>
       </div>
+    </div>
+    <div>
+      <label for="skills">Fähigkeiten</label>
+      <app-form-skill-selector id="skills"></app-form-skill-selector>
     </div>
   </section>
   <section>
@@ -55,7 +53,8 @@
       </div>
     </div>
     <div>
-      <button type="button">Hinzufügen</button>
+      <button *ngIf="!isEditMode" type="button">Hinzufügen</button>
+      <button *ngIf="isEditMode" type="button">Speichern</button>
     </div>
   </section>
 </form>

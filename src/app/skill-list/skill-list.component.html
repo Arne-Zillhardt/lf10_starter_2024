@@ -1,0 +1,40 @@
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Mitgliederanzahl</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data">
+    <td>{{ item.id }}</td>
+    <td>
+      <ng-container *ngIf="!item.isEditing">
+        {{ item.name }}
+      </ng-container>
+      <ng-container *ngIf="item.isEditing">
+        <input [(ngModel)]="item.name" placeholder="Bitte neuen Namen eingeben...">
+      </ng-container>
+    </td>
+    <td>{{ item.mitgliederanzahl }}</td>
+    <td>
+      <ng-container *ngIf="!item.isEditing">
+        <button (click)="bearbeiten(item)">Bearbeiten</button>
+      </ng-container>
+      <ng-container *ngIf="item.isEditing">
+        <button (click)="speichern(item)">Speichern</button>
+        <button (click)="abbrechen(item)">Abbrechen</button>
+      </ng-container>
+      <button *ngIf="!item.isEditing" (click)="loeschen(item.id)">Löschen</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<p>Rows per page: 10</p>
+<p>1 - 10 of 50</p>
+
+<button><</button>
+<button>></button>
