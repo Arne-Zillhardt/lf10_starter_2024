@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 3vw;
+}
+section {
+  flex: 1;
+  position: relative;
+}
+label {
+  padding: 3px;
+}
+.inputField {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin-bottom: 25px;
+}
+.invalidField {
+  border: red 1px solid;
+}
+.saveButton{
+  position: absolute;
+  bottom:0;
+}

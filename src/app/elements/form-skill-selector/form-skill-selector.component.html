@@ -1,0 +1,32 @@
+<div class="skillSelector">
+  <div class="skillPreview">
+    <div>
+      @for (skill of selectedSkills; track skill) {
+        <span>{{skill}}, </span>
+      }
+    </div>
+  </div>
+  <div class="skillSearch">
+    <input placeholder="Suchen...">
+    <div class="skillsSelected">
+      @for (skill of selectedSkills; track skill) {
+        <span>{{skill}} x</span>
+      }
+    </div>
+    <hr>
+    <div class="skillsList">
+      <span>Java</span>
+      <span>Javascript</span>
+      <span>Python</span>
+      <span>C++</span>
+      <span>Java</span>
+      <span>Javascript</span>
+      <span>Python</span>
+      <span>C++</span>
+      <span>Java</span>
+      <span>Javascript</span>
+      <span>Python</span>
+      <span>C++</span>
+    </div>
+  </div>
+</div>

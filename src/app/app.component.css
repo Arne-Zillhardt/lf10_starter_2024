@@ -1,0 +1,14 @@
+.app{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+.page{
+  display: flex;
+  justify-content: center;
+  padding: 6vh;
+  width: 100%;
+  background: black;
+}

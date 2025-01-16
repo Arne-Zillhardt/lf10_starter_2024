@@ -1,0 +1,71 @@
+<div class="heading">
+  <h1 *ngIf="!isEditMode">Mitarbeiter hinzufügen</h1>
+  <h1 *ngIf="isEditMode">Mitarbeiter bearbeiten</h1>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <section>
+    <div class="inputField">
+      <label for="firstName">Vorname</label>
+      <input
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        [class.invalidField]="form.get('firstName')?.touched && form.get('firstName')?.invalid"
+      />
+    </div>
+    <div class="inputField">
+      <label for="lastName">Nachname</label>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        [class.invalidField]="form.get('lastName')?.touched && form.get('lastName')?.invalid"
+      />
+    </div>
+    <div class="inputField">
+      <label for="phone">Telefonnummer</label>
+      <input
+        id="phone"
+        type="tel"
+        formControlName="phone"
+        [class.invalidField]="form.get('phone')?.touched && form.get('phone')?.invalid"
+      />
+    </div>
+    <div class="inputField">
+      <label for="skills">Fähigkeiten</label>
+      <app-form-skill-selector id="skills"></app-form-skill-selector>
+    </div>
+  </section>
+  <section>
+    <div class="inputField">
+      <label for="address">Adresse</label>
+      <input
+        id="address"
+        type="text"
+        formControlName="address"
+        [class.invalidField]="form.get('address')?.touched && form.get('address')?.invalid"
+      />
+    </div>
+    <div class="inputField">
+      <label for="city">Stadt</label>
+      <input
+        id="city"
+        type="text"
+        formControlName="city"
+        [class.invalidField]="form.get('city')?.touched && form.get('city')?.invalid"
+      />
+    </div>
+    <div class="inputField">
+      <label for="zip">PLZ</label>
+      <input
+        id="zip"
+        type="text"
+        formControlName="zip"
+        [class.invalidField]="form.get('zip')?.touched && form.get('zip')?.invalid"
+      />
+    </div>
+    <button *ngIf="!isEditMode" class="saveButton" type="button">Hinzufügen</button>
+    <button *ngIf="isEditMode" class="saveButton"  type="button">Speichern</button>
+  </section>
+</form>

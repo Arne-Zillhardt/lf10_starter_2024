@@ -1,0 +1,39 @@
+.skillPreview {
+  background: var(--dark-grey);
+  border: #ffffff2b 1px solid;
+  font-size: 13px;
+  background: var(--dark-grey);
+  padding: 10px 15px;
+  border-radius: 5px 5px 0px 0px;
+  color: #ffffff85;
+}
+.skillSearch {
+  background: var(--dark-grey);
+  padding: 15px;
+  border-radius: 0px 0px 5px 5px;
+  border: #ffffff2b 1px solid;
+}
+.skillSearch > input {
+  width: -webkit-fill-available;
+  margin-bottom: 10px;
+  border: none;
+}
+.skillsSelected {
+  display: flex;
+  gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.skillsSelected > span {
+  border-radius: 5px;
+  padding: 9px;
+  display: block;
+  background: var(--base-color);
+}
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  overflow:scroll;
+  height: 100px;
+}
