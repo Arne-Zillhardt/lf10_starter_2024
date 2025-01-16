@@ -1,0 +1,7 @@
+.inputField {
+  background: var(--dark-grey);
+  border: #ffffff2b 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff85;
+}

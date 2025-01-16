@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 3vw;
+}
+section {
+  flex: 1;
+}
+.inputField {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+input {
+  background: var(--dark-grey);
+  border: #ffffff2b 1px solid;
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff85;
+}
+.invalidField {
+  border: red 1px solid;
+}

@@ -21,13 +21,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let skill of skills">
-      <td>{{ skill.id }}</td>
-      <td>
+      <td style="width:10%">{{ skill.id }}</td>
+      <td style="width:50%">
         <input *ngIf="skill.isEditing" [(ngModel)]="skill.name" />
         <span *ngIf="!skill.isEditing">{{ skill.name }}</span>
       </td>
-      <td>{{ skill.memberCount }}</td>
-      <td>
+      <td style="width:10%">{{ skill.memberCount }}</td>
+      <td style="width:30%">
         <button *ngIf="!skill.isEditing" (click)="editSkill(skill)">Bearbeiten</button>
         <button *ngIf="skill.isEditing" (click)="saveSkill(skill)">Speichern</button>
         <button *ngIf="skill.isEditing" (click)="cancelEdit(skill)">Abbrechen</button>
