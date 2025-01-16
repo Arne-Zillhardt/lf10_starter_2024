@@ -1,7 +1,8 @@
-<nav>
-  <ul>
-    <li><a routerLink="/skills">Skills</a></li>
-    <li><a routerLink="/employees">Employees</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<!-- app.component.html -->
+<div class="app">
+  <app-sidebar></app-sidebar>
+
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
+</div>

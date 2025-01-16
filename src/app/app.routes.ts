@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
-import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import { AddEmployeeComponent } from './employee-form/add-employee.component';
+import { EmployeesComponent } from './employees/employees.component';
 import {SkillsComponent} from "./skills/skills.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/skills', pathMatch: 'full' }, // Standardroute
-  { path: 'skills', component: SkillsComponent },         // Route für Skills
-  { path: 'employees', component: EmployeeListComponent } // Route für Employees
+  { path: 'employees/add', component: AddEmployeeComponent },
+  { path: 'employees/edit/:id', component: AddEmployeeComponent },
+  { path: 'employees', component: EmployeesComponent },
+  { path: 'skills', component: SkillsComponent },
+  { path: '', component: EmployeesComponent }
 ];

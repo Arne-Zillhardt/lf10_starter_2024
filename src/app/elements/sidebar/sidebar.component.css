@@ -6,7 +6,7 @@
   background: var(--base-color);
 }
 .links {
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -16,4 +16,5 @@ p {
 a {
   color: white;
   font-size: 20px;
+  text-decoration: none;
 }

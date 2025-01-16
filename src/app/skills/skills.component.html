@@ -1,10 +1,12 @@
 <div class="skills-container">
-  <h1>Skills</h1>
+  <div class="heading">
+    <h1>Qualifikationen</h1>
 
-  <!-- Eingabe für neuen Skill -->
-  <div class="new-skill-form">
-    <input type="text" [(ngModel)]="newSkillName" placeholder="Skill Name eingeben" />
-    <button (click)="addSkill()">Anlegen</button>
+    <!-- Eingabe für neuen Skill -->
+    <div class="new-skill-form">
+      <input type="text" [(ngModel)]="newSkillName" placeholder="Skill Name eingeben" />
+      <button (click)="addSkill()">Anlegen</button>
+    </div>
   </div>
 
   <!-- Tabelle mit Skills -->
@@ -29,7 +31,7 @@
         <button *ngIf="!skill.isEditing" (click)="editSkill(skill)">Bearbeiten</button>
         <button *ngIf="skill.isEditing" (click)="saveSkill(skill)">Speichern</button>
         <button *ngIf="skill.isEditing" (click)="cancelEdit(skill)">Abbrechen</button>
-        <button (click)="deleteSkill(skill.id)">Löschen</button>
+        <button *ngIf="!skill.isEditing" (click)="deleteSkill(skill.id)">Löschen</button>
       </td>
     </tr>
     </tbody>
