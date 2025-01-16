@@ -58,3 +58,10 @@ button {
 button:hover {
   background-color: #555;
 }
+input {
+  background: var(--dark-grey);
+  border: #ffffff2b 1px solid;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #ffffff85;
+}

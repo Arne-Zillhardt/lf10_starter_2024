@@ -65,9 +65,7 @@
         [class.invalidField]="form.get('zip')?.touched && form.get('zip')?.invalid"
       />
     </div>
-    <div class="inputField">
-      <button *ngIf="!isEditMode" type="button">Hinzufügen</button>
-      <button *ngIf="isEditMode" type="button">Speichern</button>
-    </div>
+    <button *ngIf="!isEditMode" class="saveButton" type="button">Hinzufügen</button>
+    <button *ngIf="isEditMode" class="saveButton"  type="button">Speichern</button>
   </section>
 </form>

@@ -6,21 +6,22 @@ form {
 }
 section {
   flex: 1;
+  position: relative;
+}
+label {
+  padding: 3px;
 }
 .inputField {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-evenly;
-  margin-top: 25px;
-}
-input {
-  background: var(--dark-grey);
-  border: #ffffff2b 1px solid;
-  padding: 5px;
-  border-radius: 5px;
-  color: #ffffff85;
+  margin-bottom: 25px;
 }
 .invalidField {
   border: red 1px solid;
+}
+.saveButton{
+  position: absolute;
+  bottom:0;
 }
