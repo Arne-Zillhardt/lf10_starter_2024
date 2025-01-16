@@ -1,0 +1,37 @@
+<div class="skills-container">
+  <h1>Skills</h1>
+
+  <!-- Eingabe für neuen Skill -->
+  <div class="new-skill-form">
+    <input type="text" [(ngModel)]="newSkillName" placeholder="Skill Name eingeben" />
+    <button (click)="addSkill()">Anlegen</button>
+  </div>
+
+  <!-- Tabelle mit Skills -->
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Mitgliederanzahl</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let skill of skills">
+      <td>{{ skill.id }}</td>
+      <td>
+        <input *ngIf="skill.isEditing" [(ngModel)]="skill.name" />
+        <span *ngIf="!skill.isEditing">{{ skill.name }}</span>
+      </td>
+      <td>{{ skill.memberCount }}</td>
+      <td>
+        <button *ngIf="!skill.isEditing" (click)="editSkill(skill)">Bearbeiten</button>
+        <button *ngIf="skill.isEditing" (click)="saveSkill(skill)">Speichern</button>
+        <button *ngIf="skill.isEditing" (click)="cancelEdit(skill)">Abbrechen</button>
+        <button (click)="deleteSkill(skill.id)">Löschen</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
