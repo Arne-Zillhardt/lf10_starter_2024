@@ -14,7 +14,7 @@ export class QualificationService {
   }
 
   updateQualification(skillToUpdate: SkillSetDto) {
-    this.client.put(`${QualificationService.baseUrl}/${skillToUpdate.id}`, `{"skill": "${skillToUpdate.name}"}`, {
+    this.client.put(`${QualificationService.baseUrl}/${skillToUpdate.id}`, `{"skill": "${skillToUpdate.skill}"}`, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
     }).subscribe()

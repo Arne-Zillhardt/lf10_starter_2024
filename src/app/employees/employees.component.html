@@ -13,17 +13,26 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>ID</td>
-    <td>NAME</td>
-    <td>TEL</td>
-    <td>SKILL</td>
-    <td>
-      <a [routerLink]="['/employees/edit', 1]">
-        <button>Bearbeiten</button>
-      </a>
-      <button>Löschen</button>
-    </td>
-  </tr>
+    @for (employee of employees$ | async; track employee.id) {
+      <tr>
+        <td>{{employee.id}}</td>
+        <td>{{ employee.firstName + " " + employee.lastName }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>@for (skill of employee.skillSet; track $index) {
+          @if ($index == $count-1)
+          {
+            {{skill.skill}}
+          } @else {
+            {{skill.skill + ", "}}
+          }
+        }</td>
+        <td>
+          <a [routerLink]="['/employees/edit', 1]">
+            <button>Bearbeiten</button>
+          </a>
+          <button>Löschen</button>
+        </td>
+      </tr>
+    }
   </tbody>
 </table>
