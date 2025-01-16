@@ -6,6 +6,8 @@
   padding: 10px 15px;
   border-radius: 5px 5px 0px 0px;
   color: #ffffff85;
+  height: 15px;
+  overflow: hidden;
 }
 .skillSearch {
   background: var(--dark-grey);
