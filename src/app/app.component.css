@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   padding: 6vh;
+  padding-bottom: 0;
   width: 100%;
   background: black;
 }

@@ -11,6 +11,7 @@
         id="firstName"
         type="text"
         formControlName="firstName"
+        [(ngModel)]="employeeDto.firstName"
         [class.invalidField]="form.get('firstName')?.touched && form.get('firstName')?.invalid"
       />
     </div>
@@ -20,6 +21,7 @@
         id="lastName"
         type="text"
         formControlName="lastName"
+        [(ngModel)]="employeeDto.lastName"
         [class.invalidField]="form.get('lastName')?.touched && form.get('lastName')?.invalid"
       />
     </div>
@@ -29,12 +31,13 @@
         id="phone"
         type="tel"
         formControlName="phone"
+        [(ngModel)]="employeeDto.phone"
         [class.invalidField]="form.get('phone')?.touched && form.get('phone')?.invalid"
       />
     </div>
     <div class="inputField">
       <label for="skills">Fähigkeiten</label>
-      <app-form-skill-selector id="skills"></app-form-skill-selector>
+      <app-form-skill-selector [employeeDto]="employeeDto" id="skills"></app-form-skill-selector>
     </div>
   </section>
   <section>
@@ -44,6 +47,7 @@
         id="address"
         type="text"
         formControlName="address"
+        [(ngModel)]="employeeDto.street"
         [class.invalidField]="form.get('address')?.touched && form.get('address')?.invalid"
       />
     </div>
@@ -53,6 +57,7 @@
         id="city"
         type="text"
         formControlName="city"
+        [(ngModel)]="employeeDto.city"
         [class.invalidField]="form.get('city')?.touched && form.get('city')?.invalid"
       />
     </div>
@@ -62,10 +67,11 @@
         id="zip"
         type="text"
         formControlName="zip"
+        [(ngModel)]="employeeDto.postcode"
         [class.invalidField]="form.get('zip')?.touched && form.get('zip')?.invalid"
       />
     </div>
-    <button *ngIf="!isEditMode" class="saveButton" type="button">Hinzufügen</button>
-    <button *ngIf="isEditMode" class="saveButton"  type="button">Speichern</button>
+    <button *ngIf="!isEditMode" class="saveButton" type="submit">Hinzufügen</button>
+    <button *ngIf="isEditMode" class="saveButton"  type="submit">Speichern</button>
   </section>
 </form>
