@@ -6,15 +6,22 @@
 </div>
 
 <table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Telefonnummer</th>
-    <th>Qualifikation</th>
-    <th>Aktion</th>
-  </tr>
-  </thead>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Telefonnummer</th>
+      <th>
+        <div class="inputField">
+          <label style="padding-right: 5px">Qualifikation</label>
+          <input id="qualification" type="text" style="height: 25px" (input)="filterEmployees()" placeholder="Nach Qualifikation Filtern" [(ngModel)]="qualification"/>
+        </div>
+      </th>
+      @if ((employees$ | async)?.length != 0) {
+        <th>Aktion</th>
+      }
+    </tr>
+    </thead>
   <tbody>
     @for (employee of employees$ | async; track employee.id) {
       <tr>
@@ -33,7 +40,7 @@
           <a [routerLink]="['/employees/edit', employee.id]">
             <button>Bearbeiten</button>
           </a>
-          <button>Löschen</button>
+          <button (click)="deleteEmployee(employee.id)">Löschen</button>
         </td>
       </tr>
     }
