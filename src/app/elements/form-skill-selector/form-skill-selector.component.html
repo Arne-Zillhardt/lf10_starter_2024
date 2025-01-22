@@ -1,13 +1,14 @@
 <div class="skillSelector">
   <div class="skillPreview">
-    <div>
+    <div class="skillPreviewList">
         @for (skill of employeeDto?.skillSet; track skill) {
             <span data-id='{{skill.id}}'>{{skill.skill}} - </span>
         }
     </div>
+    <span class="skillDownArrow" id="skillSelectorVisibilitySwitch" (click)="switchSkillSelectorVisiblitiy()"><</span>
   </div>
-  <div class="skillSearch">
-    <input (keydown)="filterSkills()" (keyup)="filterSkills()" id="searchInput" placeholder="Suchen...">
+  <div id="skillSearch">
+    <input [(ngModel)]="searchText" (keydown)="filterSkills()" (keyup)="filterSkills()" id="searchInput" placeholder="Suchen...">
     <div class="skillsSelected">
         @for (skill of employeeDto?.skillSet; track skill) {
             <span (click)="removeSkillFromEmployee(skill.id)">{{skill.skill}} x</span>
@@ -17,6 +18,9 @@
     <div class="skillsList">
         @for (skill of filteredSkillList; track skill) {
             <span (click)="addSkillToEmployee(skill.id)">{{skill.skill}}</span>
+        }
+        @if (filteredSkillList.length == 0 && searchText != ""){
+            <span (click)="addNewSkillToDatabase(searchText)">'{{searchText}}' anlegen</span>
         }
     </div>
   </div>

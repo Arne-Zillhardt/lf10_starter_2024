@@ -1,18 +1,21 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { EmployeeDto } from "../../models/EmployeeDto";
 import { SkillSetDto } from "../../models/SkillSetDto";
+import { FormsModule } from '@angular/forms';
 import { QualificationService } from "../../services/QualificationService";
+import {CreateQualificationDto} from "../../models/CreateQualificationDto";
 
 @Component({
   selector: 'app-form-skill-selector',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './form-skill-selector.component.html',
   styleUrls: ['./form-skill-selector.component.css']
 })
 export class FormSkillSelectorComponent implements OnInit, OnChanges {
   allSkills: SkillSetDto[] = [];
   filteredSkillList: SkillSetDto[] = [];
+  searchText: string = '';
   @Input('employeeDto') employeeDto: EmployeeDto | undefined;
 
   constructor(private qualificationService: QualificationService) {}
@@ -20,7 +23,7 @@ export class FormSkillSelectorComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.qualificationService.getQualifications().subscribe(skills => {
       this.allSkills = skills;
-      this.filterSkills(); // Initial filtering
+      this.filterSkills();
     });
   }
 
@@ -59,8 +62,31 @@ export class FormSkillSelectorComponent implements OnInit, OnChanges {
         this.employeeDto.skillSet = [];
       }
       this.employeeDto.skillSet.push(skill);
-      (document.getElementById('searchInput') as HTMLInputElement).value = "";
+      this.searchText = "";
       this.filterSkills();
+    }
+  }
+  addNewSkillToDatabase(name: string){
+    const skill = new CreateQualificationDto(name);
+    this.qualificationService.createQualification(skill)
+      .subscribe((newSkill: SkillSetDto) => {
+        this.qualificationService.getQualifications().subscribe(skills => {
+          this.allSkills = skills;
+          this.addSkillToEmployee(newSkill.id);
+          this.filterSkills();
+        });
+      });
+  }
+  switchSkillSelectorVisiblitiy(){
+    const skillSelectorVisibilitySwitch = (document.getElementById('skillSelectorVisibilitySwitch') as HTMLInputElement);
+    const skillSearch = (document.getElementById('skillSearch') as HTMLInputElement);
+
+    if(skillSelectorVisibilitySwitch.classList.contains("skillUpArrow")){
+      skillSelectorVisibilitySwitch.classList.remove("skillUpArrow");
+      skillSearch.style.display = "none";
+    }else{
+      skillSelectorVisibilitySwitch.classList.add("skillUpArrow");
+      skillSearch.style.display = "block";
     }
   }
 }
