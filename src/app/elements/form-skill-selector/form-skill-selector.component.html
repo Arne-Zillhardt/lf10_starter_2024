@@ -1,32 +1,27 @@
 <div class="skillSelector">
-  <div class="skillPreview">
-    <div>
-      @for (skill of selectedSkills; track skill) {
-        <span>{{skill}}, </span>
-      }
+  <div class="skillPreview" (click)="switchSkillSelectorVisiblitiy()">
+    <div class="skillPreviewList">
+        @for (skill of employeeDto?.skillSet; track skill) {
+            <span data-id='{{skill.id}}'>{{skill.skill}} - </span>
+        }
     </div>
+    <span class="skillDownArrow" id="skillSelectorVisibilitySwitch"><</span>
   </div>
-  <div class="skillSearch">
-    <input placeholder="Suchen...">
+  <div id="skillSearch">
+    <input [(ngModel)]="searchText" (keydown)="filterSkills()" (keyup)="filterSkills()" id="searchInput" autocomplete="off" placeholder="Suchen...">
     <div class="skillsSelected">
-      @for (skill of selectedSkills; track skill) {
-        <span>{{skill}} x</span>
-      }
+        @for (skill of employeeDto?.skillSet; track skill) {
+            <span (click)="removeSkillFromEmployee(skill.id)">{{skill.skill}} x</span>
+        }
     </div>
     <hr>
     <div class="skillsList">
-      <span>Java</span>
-      <span>Javascript</span>
-      <span>Python</span>
-      <span>C++</span>
-      <span>Java</span>
-      <span>Javascript</span>
-      <span>Python</span>
-      <span>C++</span>
-      <span>Java</span>
-      <span>Javascript</span>
-      <span>Python</span>
-      <span>C++</span>
+        @for (skill of filteredSkillList; track skill) {
+            <span (click)="addSkillToEmployee(skill.id)">{{skill.skill}}</span>
+        }
+        @if (filteredSkillList.length == 0 && searchText != ""){
+            <span (click)="addNewSkillToDatabase(searchText)">'{{searchText}}' anlegen</span>
+        }
     </div>
   </div>
 </div>
