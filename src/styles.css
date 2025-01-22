@@ -9,7 +9,7 @@ body{
 .page > *:nth-child(2) {
   color: white;
   background: var(--base-color);
-  padding: 15px;
+  padding: 3vw;
   border-radius: 5px;
   flex: 1;
   overflow: scroll;
@@ -52,18 +52,29 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.1s;
 }
 
 button:hover {
   background-color: #555;
+  color: white;
 }
+
+.greenButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.greenButton:hover {
+  background-color: #45a049;
+}
+
 input {
   background: var(--dark-grey);
   border: #ffffff2b 1px solid;
   padding: 10px 15px;
-  border-radius: 5px;
-  color: #ffffff85;
+  border-radius: 10px;
+  color: white;
 }
 
 h1{

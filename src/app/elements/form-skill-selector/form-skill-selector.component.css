@@ -4,12 +4,13 @@
   font-size: 13px;
   background: var(--dark-grey);
   padding: 10px 15px;
-  border-radius: 5px 5px 0px 0px;
-  color: #ffffff85;
+  border-radius: 10px;
+  color: white;
   height: 15px;
   overflow: hidden;
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 .skillPreviewList{
   pointer-events: none;
@@ -22,22 +23,24 @@
   color: white;
   padding: 10px 15px;
   background: var(--dark-grey);
-  cursor: pointer;
 }
 .skillUpArrow {
   transform: rotate(90deg);
 }
 #skillSearch {
-  background: var(--dark-grey);
+  background: var(--base-color);
   padding: 15px;
-  border-radius: 0px 0px 5px 5px;
-  border: #ffffff2b 1px solid;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   display: none;
 }
 #skillSearch > input {
   width: -webkit-fill-available;
   margin-bottom: 10px;
   border: none;
+  background: white;
+  color: black;
+  border-radius: 100px;
 }
 .skillsSelected {
   display: flex;
@@ -47,14 +50,19 @@
   font-size: 13px;
 }
 .skillsSelected > span {
-  border-radius: 5px;
-  padding: 9px;
+  border-radius: 10px;
+  padding: 10px 15px;
   display: block;
-  background: var(--base-color);
+  background: var(--dark-grey);
+  cursor: pointer;
 }
 .skillsList {
   display: flex;
   flex-direction: column;
   overflow:scroll;
   max-height: 100px;
+  margin: 5px;
+}
+.skillsList > span {
+  cursor: pointer;
 }
