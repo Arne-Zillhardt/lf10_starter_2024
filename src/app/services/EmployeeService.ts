@@ -56,7 +56,7 @@ export class EmployeeService {
     return this.httpClient.delete<EmployeeDto>(url, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
-    }).subscribe()
+    })
   }
 
   createEmployee(employee: CreateEmployeeDto) {
