@@ -14,7 +14,7 @@
       <th>
         <div class="inputField">
           <label style="padding-right: 5px">Qualifikation</label>
-          <input id="qualification" type="text" style="height: 25px" (input)="filterEmployees()" placeholder="Nach Qualifikation Filtern" [(ngModel)]="qualification"/>
+          <input id="qualification" type="text" style="max-height: 5px" (input)="filterEmployees()" placeholder="Nach Qualifikation Filtern" [(ngModel)]="qualification"/>
         </div>
       </th>
       @if ((employees$ | async)?.length != 0) {
@@ -37,8 +37,8 @@
           }
         }</td>
         <td>
-          <a [routerLink]="['/employees/edit', employee.id]">
-            <button>Bearbeiten</button>
+          <a [routerLink]="['/employees/edit', 1]">
+            <button style="margin-right: 5px">Bearbeiten</button>
           </a>
           <button (click)="deleteEmployee(employee.id)">Löschen</button>
         </td>
