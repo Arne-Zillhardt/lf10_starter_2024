@@ -10,6 +10,7 @@
   overflow: hidden;
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 .skillPreviewList{
   pointer-events: none;
@@ -22,7 +23,6 @@
   color: white;
   padding: 10px 15px;
   background: var(--dark-grey);
-  cursor: pointer;
 }
 .skillUpArrow {
   transform: rotate(90deg);
@@ -51,10 +51,14 @@
   padding: 9px;
   display: block;
   background: var(--base-color);
+  cursor: pointer;
 }
 .skillsList {
   display: flex;
   flex-direction: column;
   overflow:scroll;
   max-height: 100px;
+}
+.skillsList > span {
+  cursor: pointer;
 }
