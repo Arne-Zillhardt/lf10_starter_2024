@@ -47,7 +47,7 @@ export class EmployeeService {
     return this.httpClient.put<EmployeeDto>(url, updatedEmployee, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
-    }).subscribe()
+    })
   }
 
   deleteEmployee(id: number) {
@@ -65,6 +65,6 @@ export class EmployeeService {
     return this.httpClient.post(url, employee, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
-    }).subscribe()
+    });
   }
 }
