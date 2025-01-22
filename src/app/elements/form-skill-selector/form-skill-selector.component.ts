@@ -73,7 +73,6 @@ export class FormSkillSelectorComponent implements OnInit, OnChanges {
         this.qualificationService.getQualifications().subscribe(skills => {
           this.allSkills = skills;
           this.addSkillToEmployee(newSkill.id);
-          this.filterSkills();
         });
       });
   }
