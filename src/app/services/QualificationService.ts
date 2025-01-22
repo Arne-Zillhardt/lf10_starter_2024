@@ -2,6 +2,8 @@ import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SkillSetDto} from "../models/SkillSetDto";
 import {EmployeeBySkillDto} from "../models/EmployeeBySkillDto";
+import {CreateQualificationDto} from "../models/CreateQualificationDto";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -28,8 +30,10 @@ export class QualificationService {
     return this.client.get<SkillSetDto[]>(QualificationService.baseUrl)
   }
 
-  createQualification(skill:string) {
-    this.client.put(`${QualificationService.baseUrl}`, `{"skill":"${skill}"}`).subscribe()
+  createQualification(skill: CreateQualificationDto): Observable<SkillSetDto> {
+    return this.client.post<SkillSetDto>(QualificationService.baseUrl, skill, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
   }
 
   getEmployeesByQualification(skillId:number) {

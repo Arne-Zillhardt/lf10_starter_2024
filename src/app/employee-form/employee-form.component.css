@@ -22,6 +22,4 @@ label {
   border: red 1px solid;
 }
 .saveButton{
-  position: absolute;
-  bottom:0;
 }

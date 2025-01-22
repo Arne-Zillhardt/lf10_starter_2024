@@ -6,14 +6,35 @@
   padding: 10px 15px;
   border-radius: 5px 5px 0px 0px;
   color: #ffffff85;
+  height: 15px;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
 }
-.skillSearch {
+.skillPreviewList{
+  pointer-events: none;
+}
+.skillDownArrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(-90deg);
+  color: white;
+  padding: 10px 15px;
+  background: var(--dark-grey);
+}
+.skillUpArrow {
+  transform: rotate(90deg);
+}
+#skillSearch {
   background: var(--dark-grey);
   padding: 15px;
   border-radius: 0px 0px 5px 5px;
   border: #ffffff2b 1px solid;
+  display: none;
 }
-.skillSearch > input {
+#skillSearch > input {
   width: -webkit-fill-available;
   margin-bottom: 10px;
   border: none;
@@ -30,10 +51,14 @@
   padding: 9px;
   display: block;
   background: var(--base-color);
+  cursor: pointer;
 }
 .skillsList {
   display: flex;
   flex-direction: column;
   overflow:scroll;
-  height: 100px;
+  max-height: 100px;
+}
+.skillsList > span {
+  cursor: pointer;
 }
