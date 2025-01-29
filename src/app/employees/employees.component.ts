@@ -1,10 +1,10 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink} from "@angular/router";
 import {map, Observable} from "rxjs";
 import {EmployeeDto} from "../models/EmployeeDto";
 import {EmployeeService} from "../services/EmployeeService";
 import {FormsModule} from "@angular/forms";
+import { Router, NavigationEnd, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,12 +17,11 @@ export class EmployeesComponent {
   public employees$: Observable<EmployeeDto[]>
   public qualification: string = ""
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService, private router: Router) {
     this.employeeService = inject(EmployeeService)
     this.employees$ = new Observable<EmployeeDto[]>()
-    this.getEmployees()
+    this.getEmployees();
   }
-
   getEmployees() {
     this.employees$ = this.employeeService.getEmployees()
   }

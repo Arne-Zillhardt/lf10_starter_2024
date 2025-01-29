@@ -59,8 +59,10 @@ export class EmployeeFormComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
 
-      if( this.isEditMode){
-        this.employeeService.updateEmployee(this.employeeDto);
+      if(this.isEditMode){
+        this.employeeService.updateEmployee(this.employeeDto).subscribe(() => {
+          this.router.navigate(['/employees']);
+        });
       }else{
         let skills: number[] = [];
 
@@ -74,12 +76,13 @@ export class EmployeeFormComponent implements OnInit {
           this.employeeDto.city,
           this.employeeDto.phone,
           skills);
-        console.log(this.employeeDto)
-        console.log(updatedEmployee)
-        this.employeeService.createEmployee(updatedEmployee);
+
+        this.employeeService.createEmployee(updatedEmployee).subscribe(() => {
+          this.router.navigate(['/employees']);
+        });
       }
 
-      this.router.navigate(['/employees']);
+
     } else {
       console.log('Form is invalid');
     }
