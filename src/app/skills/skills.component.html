@@ -20,20 +20,29 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let skill of skills">
-      <td style="width:10%">{{ skill.id }}</td>
-      <td style="width:50%">
-        <input *ngIf="skill.isEditing" [(ngModel)]="skill.name" />
-        <span *ngIf="!skill.isEditing">{{ skill.name }}</span>
-      </td>
-      <td style="width:10%">{{ skill.memberCount }}</td>
-      <td style="width:30%">
-        <button *ngIf="!skill.isEditing" (click)="editSkill(skill)">Bearbeiten</button>
-        <button *ngIf="skill.isEditing" (click)="saveSkill(skill)">Speichern</button>
-        <button *ngIf="skill.isEditing" (click)="cancelEdit(skill)">Abbrechen</button>
-        <button *ngIf="!skill.isEditing" (click)="deleteSkill(skill.id)">Löschen</button>
-      </td>
-    </tr>
+      @for (skill of skills; track skill.id) {
+        <tr>
+          <td>{{ skill.id }}</td>
+          <td>
+            @if (isToEdit(skill)) {
+              <input type="text" [(ngModel)]="skill.skill">
+            }
+            @else {
+              <span>{{ skill.skill }}</span>
+            }
+          </td>
+          <td style="width:10%">{{ skillCounts.get(skill.id) }}</td>
+          <td style="width:30%">
+            @if (isToEdit(skill)) {
+              <button (click)="saveSkill()">Speichern</button>
+              <button (click)="cancelEdit()">Abbrechen</button>
+            } @else {
+              <button (click)="edit(skill)">Bearbeiten</button>
+              <button (click)="deleteSkill(skill.id)">Löschen</button>
+            }
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>
