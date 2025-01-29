@@ -1,19 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
-interface Skill {
-  id: number;
-  name: string;
-  memberCount: number;
-  isEditing?: boolean; // Optional für Bearbeiten-Status
-}
-
-interface Employee {
-  id: number;
-  name: string;
-  skills: number[]; // IDs der Skills
-}
+import {QualificationService} from "../services/QualificationService";
+import {CreateQualificationDto} from "../models/CreateQualificationDto";
+import {SkillSetDto} from "../models/SkillSetDto";
 
 @Component({
   selector: 'app-skills',
@@ -23,74 +13,62 @@ interface Employee {
   imports: [FormsModule, CommonModule], // FormsModule und CommonModule importieren
 })
 export class SkillsComponent {
-  // Skills-Liste (Beispieldaten)
-  skills: Skill[] = [
-    { id: 1, name: 'React', memberCount: 0 },
-    { id: 2, name: 'Mongo', memberCount: 0 },
-    { id: 3, name: 'Java', memberCount: 0 },
-    { id: 4, name: 'C#', memberCount: 0 },
-    { id: 5, name: 'Golang', memberCount: 0 },
-  ];
 
-  // Mitarbeiter-Liste (Beispieldaten)
-  employees: Employee[] = [
-    { id: 1, name: 'Alice', skills: [1, 3] },
-    { id: 2, name: 'Bob', skills: [1, 2] },
-    { id: 3, name: 'Charlie', skills: [3, 4, 5] },
-    { id: 4, name: 'Diana', skills: [1, 5] },
-  ];
+  public skills: SkillSetDto[] = [];
+  newSkillName: string = '';
+  editSkill: SkillSetDto;
+  skillCounts: Map<number, number> = new Map();
 
-  newSkillName: string = ''; // Für neue Skill-Eingaben
-
-  constructor() {
-    this.updateMemberCounts(); // Mitgliederanzahl initial berechnen
+  constructor(private qualificationService: QualificationService) {
+    this.qualificationService = inject(QualificationService)
+    this.getSkills()
   }
 
-  // Mitgliederanzahl automatisch berechnen
-  updateMemberCounts(): void {
-    this.skills.forEach((skill) => {
-      skill.memberCount = this.employees.filter((employee) =>
-        employee.skills.includes(skill.id)
-      ).length;
-    });
+  getSkills() {
+    this.skills = [];
+    this.qualificationService.getQualifications().subscribe(skills => {skills.forEach(skill => {this.skills.push(skill)}); this.countSkillMembers();})
   }
 
   // Skill hinzufügen
-  addSkill(): void {
-    const newSkill: Skill = {
-      id: this.skills.length + 1,
-      name: this.newSkillName.trim(),
-      memberCount: 0,
-      isEditing: false, // Standard: Nicht im Bearbeitungsmodus
-    };
-    if (newSkill.name) {
-      this.skills.push(newSkill);
-      this.newSkillName = ''; // Eingabe zurücksetzen
-      this.updateMemberCounts();
+  addSkill() {
+    let skill = new CreateQualificationDto(this.newSkillName)
+
+    this.qualificationService.createQualification(skill).subscribe(() => this.getSkills())
+  }
+
+  deleteSkill(id: number) {
+    this.qualificationService.deleteQualification(id).subscribe(() => this.getSkills())
+  }
+
+  edit(skill: SkillSetDto) {
+    this.editSkill = skill;
+  }
+
+  saveSkill(){
+    this.qualificationService.updateQualification(this.editSkill).subscribe(() => this.getSkills())
+    this.editSkill = null;
+  }
+
+  cancelEdit(){
+    this.editSkill = null;
+  }
+
+  isToEdit(skill: SkillSetDto): boolean {
+    if (!this.editSkill)
+    {
+      return false;
     }
+    else if(this.editSkill !== skill)
+    {
+      return false;
+    }
+
+    return true;
   }
 
-  // Bearbeiten eines Skills starten
-  editSkill(skill: Skill): void {
-    skill.isEditing = true;
-  }
-
-  // Bearbeiten speichern
-  saveSkill(skill: Skill): void {
-    skill.isEditing = false;
-  }
-
-  // Bearbeiten abbrechen
-  cancelEdit(skill: Skill): void {
-    skill.isEditing = false;
-  }
-
-  // Skill löschen
-  deleteSkill(skillId: number): void {
-    this.skills = this.skills.filter((skill) => skill.id !== skillId);
-    this.employees.forEach((employee) => {
-      employee.skills = employee.skills.filter((id) => id !== skillId);
-    });
-    this.updateMemberCounts();
+  countSkillMembers() {
+    for (let skill of this.skills){
+      this.qualificationService.getEmployeesByQualification(skill.id).subscribe(employee => {this.skillCounts.set(skill.id, employee.employees.length); console.log(this.skillCounts)})
+    }
   }
 }
