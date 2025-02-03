@@ -68,13 +68,13 @@ export class DashboardComponent {
 
     const sortedSmaller = this.sortIntoSkills(smallerPartition)
     const sortedBigger = this.sortIntoSkills(biggerPartition)
-    smallerPartition.push(middleValue)
+    sortedSmaller.push(middleValue)
 
     for (let i = 0; i < sortedBigger.length; i++) {
-      smallerPartition.push(biggerPartition[i])
+      sortedSmaller.push(biggerPartition[i])
     }
 
-    return smallerPartition
+    return sortedSmaller
   }
 
   partitionSmaller(middle:number, skills:SkillDisplay[]):SkillDisplay[]{

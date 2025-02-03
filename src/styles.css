@@ -4,15 +4,25 @@
 }
 body{
   margin: 0;
+  padding: 0;
+  min-width: 100vw;
   font-family: Arial, sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 .page > *:nth-child(2) {
   color: white;
   background: var(--base-color);
-  padding: 3vw;
+  padding: 0;
+  margin: 0;
+  border: none;
   border-radius: 5px;
   flex: 1;
-  overflow: scroll;
+  height: 88vh;
+  width: 80vw;
+  margin-left: -2vw;
 }
 .heading{
   display: flex;
@@ -22,24 +32,53 @@ body{
 
 /* Tabelle */
 table {
-  width: 100%;
-  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
   background-color: #2a2a2a;
   border-radius: 10px;
-  overflow: hidden;
+  width: 76vw;
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 60vh;
 }
 
-th, td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #444;
-  color: #fff;
+table::-webkit-scrollbar {
+  display: none;
 }
 
-th {
+.table-header {
   background-color: #3e3e3e;
   text-transform: uppercase;
-  font-size: 0.9rem;
+}
+
+tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  width: inherit;
+  height: 10vh;
+  border-radius: inherit;
+  border: none;
+}
+
+td, th{
+  width: 15vw;
+  height: 10vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1vw;
 }
 
 tr:hover {
@@ -69,6 +108,15 @@ button:hover {
   background-color: #45a049;
 }
 
+.redButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.redButton:hover {
+  background-color: #e53935;
+}
+
 input {
   background: var(--dark-grey);
   border: #ffffff2b 1px solid;
@@ -79,4 +127,31 @@ input {
 
 h1{
   margin-top: 0;
+}
+
+.employees, .skills, .employee-edit{
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 76vw;
+  margin: 0;
+  border: none;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
+}
+
+.headbar {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  align-items: center;
+  align-self: flex-end;
+  margin-top: 10vh;
+  margin-bottom: 1vh;
+}
+
+.headbar button {
+  width: 12vw;
 }

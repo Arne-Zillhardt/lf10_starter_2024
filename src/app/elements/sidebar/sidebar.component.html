@@ -1,19 +1,13 @@
-<div class="sidebar">
-  <nav>
-    <a routerLink="/">
+<nav>
+  <div class="sidebar">
+    <a routerLink="/" style="border: none; padding: 0">
       <img src="/assets/logo.jpg" height="60px" width="auto"/>
     </a>
     <div class="links">
-      <p>Main</p>
-      <a routerLink="/">Dashboard</a>
-      <p>Lists</p>
+      <a class="dashboard-link" routerLink="/">Übersicht</a>
       <a routerLink="/employees">Mitarbeiter</a>
       <a routerLink="/skills">Qualifiktationen</a>
+      <a routerLink="/" class="logout" (click)="logout()">Abmelden</a>
     </div>
-  </nav>
-  <nav>
-    <div class="links">
-      <a routerLink="/logout">Abmelden</a>
-    </div>
-  </nav>
 </div>
+</nav>

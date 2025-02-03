@@ -1,5 +1,5 @@
 export class GetEmployeeBySkillDto {
-  constructor(id: number, lastName: string, firstName: string) {
+  constructor(public id:number, public lastName: string, public firstName: string) {
 
   }
 

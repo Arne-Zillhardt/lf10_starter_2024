@@ -1,48 +1,40 @@
-<div class="heading">
-  <h1>Mitarbeiter</h1>
-  <div class="new-skill-form">
+<div class="employees">
+  <div class="heading">
+    <h1>Mitarbeiter</h1>
+  </div>
+  <div class="headbar">
+    <input id="qualification" type="text" (input)="filterEmployees()" placeholder="Nach Qualifikation Filtern"
+           [(ngModel)]="qualification"/>
     <button routerLink="/employees/add" class="greenButton">Neuer Mitarbeiter</button>
   </div>
-</div>
 
-<table>
-    <thead>
-    <tr>
+  <table>
+    <tr class="table-header">
       <th>ID</th>
       <th>Name</th>
       <th>Telefonnummer</th>
-      <th>
-        <div class="inputField">
-          <label style="padding-right: 5px">Qualifikation</label>
-          <input id="qualification" type="text" style="max-height: 5px" (input)="filterEmployees()" placeholder="Nach Qualifikation Filtern" [(ngModel)]="qualification"/>
-        </div>
-      </th>
+      <th>Qualifikation</th>
       @if ((employees$ | async)?.length != 0) {
         <th>Aktion</th>
       }
     </tr>
-    </thead>
-  <tbody>
     @for (employee of employees$ | async; track employee.id) {
       <tr>
-        <td>{{employee.id}}</td>
+        <td>{{ employee.id }}</td>
         <td>{{ employee.firstName + " " + employee.lastName }}</td>
         <td>{{ employee.phone }}</td>
         <td>@for (skill of employee.skillSet; track $index) {
-          @if ($index == $count-1)
-          {
-            {{skill.skill}}
+          @if ($index == $count - 1) {
+            {{ skill.skill }}
           } @else {
-            {{skill.skill + ", "}}
+            {{ skill.skill + ", " }}
           }
         }</td>
-        <td>
-          <a [routerLink]="['/employees/edit', 1]">
-            <button style="margin-right: 5px">Bearbeiten</button>
-          </a>
-          <button (click)="deleteEmployee(employee.id)">Löschen</button>
+        <td class="action-buttons">
+          <button (click)="this.navigateToEdit()" class="greenButton">Bearbeiten</button>
+          <button class="redButton" (click)="deleteEmployee(employee.id)">Löschen</button>
         </td>
       </tr>
     }
-  </tbody>
-</table>
+  </table>
+</div>
