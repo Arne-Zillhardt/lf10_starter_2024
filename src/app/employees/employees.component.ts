@@ -46,4 +46,8 @@ export class EmployeesComponent {
   {
     this.employeeService.deleteEmployee(id).subscribe(() => { this.getEmployees() })
   }
+
+  navigateToEdit() {
+    this.router.navigate(['/employees/edit', 1])
+  }
 }

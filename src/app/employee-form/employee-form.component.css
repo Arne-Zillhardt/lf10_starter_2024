@@ -1,25 +1,26 @@
 form {
   display: flex;
-  justify-content: flex-start;
   flex-direction: row;
   gap: 3vw;
+  width: 76vw;
+  justify-content: space-between;
+  align-items: center;
+  height: 70vh;
 }
+
 section {
-  flex: 1;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50vw;
+  height: 55vh;
 }
-label {
-  padding: 3px;
-}
+
 .inputField {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: space-evenly;
-  margin-bottom: 25px;
 }
+
 .invalidField {
   border: red 1px solid;
-}
-.saveButton{
 }

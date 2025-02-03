@@ -1,48 +1,43 @@
-<div class="skills-container">
+<div class="skills">
   <div class="heading">
     <h1>Qualifikationen</h1>
 
     <!-- Eingabe für neuen Skill -->
-    <div class="new-skill-form">
-      <input type="text" [(ngModel)]="newSkillName" placeholder="Skill Name eingeben" />
-      <button (click)="addSkill()">Anlegen</button>
-    </div>
   </div>
 
+  <div class="headbar">
+    <input type="text" [(ngModel)]="newSkillName" (keyup.enter)="addSkill()" placeholder="Skill Name eingeben"/>
+    <button class="greenButton" (click)="addSkill()">Anlegen</button>
+  </div>
   <!-- Tabelle mit Skills -->
   <table>
-    <thead>
-    <tr>
+    <tr class="table-header">
       <th>ID</th>
       <th>Name</th>
       <th>Mitgliederanzahl</th>
       <th>Aktionen</th>
     </tr>
-    </thead>
-    <tbody>
-      @for (skill of skills; track skill.id) {
-        <tr>
-          <td>{{ skill.id }}</td>
-          <td>
-            @if (isToEdit(skill)) {
-              <input type="text" [(ngModel)]="skill.skill">
-            }
-            @else {
-              <span>{{ skill.skill }}</span>
-            }
-          </td>
-          <td style="width:10%">{{ skillCounts.get(skill.id) }}</td>
-          <td style="width:30%">
-            @if (isToEdit(skill)) {
-              <button (click)="saveSkill()">Speichern</button>
-              <button (click)="cancelEdit()">Abbrechen</button>
-            } @else {
-              <button (click)="edit(skill)">Bearbeiten</button>
-              <button (click)="deleteSkill(skill.id)">Löschen</button>
-            }
-          </td>
-        </tr>
-      }
-    </tbody>
+    @for (skill of skills; track skill.id) {
+      <tr>
+        <td>{{ skill.id }}</td>
+        <td>
+          @if (isToEdit(skill)) {
+            <input (keyup.enter)="saveSkill()" type="text" [(ngModel)]="skill.skill">
+          } @else {
+            <span>{{ skill.skill }}</span>
+          }
+        </td>
+        <td>{{ skillCounts.get(skill.id) }}</td>
+        <td class="action-buttons">
+          @if (isToEdit(skill)) {
+            <button class="greenButton" (click)="saveSkill()">Speichern</button>
+            <button class="redButton" (click)="cancelEdit()">Abbrechen</button>
+          } @else {
+            <button class="greenButton" (click)="edit(skill)">Bearbeiten</button>
+            <button class="redButton" (click)="deleteSkill(skill.id)">Löschen</button>
+          }
+        </td>
+      </tr>
+    }
   </table>
 </div>

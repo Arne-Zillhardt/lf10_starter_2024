@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import {QualificationService} from "../services/QualificationService";
 import {CreateQualificationDto} from "../models/CreateQualificationDto";
 import {SkillSetDto} from "../models/SkillSetDto";
+import {EmployeeService} from "../services/EmployeeService";
+import {forkJoin, Observable} from "rxjs";
+import {EmployeeDto} from "../models/EmployeeDto";
 
 @Component({
   selector: 'app-skills',
@@ -19,8 +22,9 @@ export class SkillsComponent {
   editSkill: SkillSetDto;
   skillCounts: Map<number, number> = new Map();
 
-  constructor(private qualificationService: QualificationService) {
+  constructor(private qualificationService: QualificationService, private employeeServive: EmployeeService) {
     this.qualificationService = inject(QualificationService)
+    this.employeeServive = inject(EmployeeService)
     this.getSkills()
   }
 
@@ -37,7 +41,29 @@ export class SkillsComponent {
   }
 
   deleteSkill(id: number) {
-    this.qualificationService.deleteQualification(id).subscribe(() => this.getSkills())
+    this.qualificationService.getEmployeesByQualification(id).subscribe(result => {
+      if (result.employees.length == 0) {
+        this.qualificationService.deleteQualification(id).subscribe(() => this.getSkills())
+      }
+
+      let requests = result.employees.map(employee=> this.employeeServive.getEmployeeById(employee.id))
+      forkJoin(requests).subscribe({
+        next: employees=> {
+          let employeeUpdateRequest:Observable<EmployeeDto>[] = []
+          employees.forEach(employee => {
+            employee.skillSet = employee.skillSet.filter(skill => skill.id != id)
+            employeeUpdateRequest.push(this.employeeServive.updateEmployee(employee))
+          })
+
+          forkJoin(employeeUpdateRequest).subscribe({
+            next: value => {
+              this.qualificationService.deleteQualification(id).subscribe(() => this.getSkills())
+            }
+          })
+        }
+        })
+    }
+    )
   }
 
   edit(skill: SkillSetDto) {

@@ -1,77 +1,79 @@
-<div class="heading">
-  <h1 *ngIf="!isEditMode">Mitarbeiter hinzufügen</h1>
-  <h1 *ngIf="isEditMode">Mitarbeiter bearbeiten</h1>
-</div>
+<div class="employee-edit">
+  <div class="heading">
+    <h1 *ngIf="!isEditMode">Mitarbeiter hinzufügen</h1>
+    <h1 *ngIf="isEditMode">Mitarbeiter bearbeiten</h1>
+  </div>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <section>
-    <div class="inputField">
-      <label for="firstName">Vorname</label>
-      <input
-        id="firstName"
-        type="text"
-        formControlName="firstName"
-        [(ngModel)]="employeeDto.firstName"
-        [class.invalidField]="form.get('firstName')?.touched && form.get('firstName')?.invalid"
-      />
-    </div>
-    <div class="inputField">
-      <label for="lastName">Nachname</label>
-      <input
-        id="lastName"
-        type="text"
-        formControlName="lastName"
-        [(ngModel)]="employeeDto.lastName"
-        [class.invalidField]="form.get('lastName')?.touched && form.get('lastName')?.invalid"
-      />
-    </div>
-    <div class="inputField">
-      <label for="phone">Telefonnummer</label>
-      <input
-        id="phone"
-        type="tel"
-        formControlName="phone"
-        [(ngModel)]="employeeDto.phone"
-        [class.invalidField]="form.get('phone')?.touched && form.get('phone')?.invalid"
-      />
-    </div>
-    <div class="inputField">
-      <label for="skills">Fähigkeiten</label>
-      <app-form-skill-selector [employeeDto]="employeeDto" id="skills"></app-form-skill-selector>
-    </div>
-  </section>
-  <section>
-    <div class="inputField">
-      <label for="address">Adresse</label>
-      <input
-        id="address"
-        type="text"
-        formControlName="address"
-        [(ngModel)]="employeeDto.street"
-        [class.invalidField]="form.get('address')?.touched && form.get('address')?.invalid"
-      />
-    </div>
-    <div class="inputField">
-      <label for="city">Stadt</label>
-      <input
-        id="city"
-        type="text"
-        formControlName="city"
-        [(ngModel)]="employeeDto.city"
-        [class.invalidField]="form.get('city')?.touched && form.get('city')?.invalid"
-      />
-    </div>
-    <div class="inputField">
-      <label for="zip">PLZ</label>
-      <input
-        id="zip"
-        type="text"
-        formControlName="zip"
-        [(ngModel)]="employeeDto.postcode"
-        [class.invalidField]="form.get('zip')?.touched && form.get('zip')?.invalid"
-      />
-    </div>
-    <button *ngIf="!isEditMode" class="saveButton" type="submit">Hinzufügen</button>
-    <button *ngIf="isEditMode" class="saveButton"  type="submit">Speichern</button>
-  </section>
-</form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <section>
+      <div class="inputField">
+        <label for="firstName">Vorname</label>
+        <input
+          id="firstName"
+          type="text"
+          formControlName="firstName"
+          [(ngModel)]="employeeDto.firstName"
+          [class.invalidField]="form.get('firstName')?.touched && form.get('firstName')?.invalid"
+        />
+      </div>
+      <div class="inputField">
+        <label for="lastName">Nachname</label>
+        <input
+          id="lastName"
+          type="text"
+          formControlName="lastName"
+          [(ngModel)]="employeeDto.lastName"
+          [class.invalidField]="form.get('lastName')?.touched && form.get('lastName')?.invalid"
+        />
+      </div>
+      <div class="inputField">
+        <label for="skills">Fähigkeiten</label>
+        <app-form-skill-selector [employeeDto]="employeeDto" id="skills"></app-form-skill-selector>
+      </div>
+      <div class="inputField">
+        <label for="phone">Telefonnummer</label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          [(ngModel)]="employeeDto.phone"
+          [class.invalidField]="form.get('phone')?.touched && form.get('phone')?.invalid"
+        />
+      </div>
+    </section>
+    <section>
+      <div class="inputField">
+        <label for="address">Adresse</label>
+        <input
+          id="address"
+          type="text"
+          formControlName="address"
+          [(ngModel)]="employeeDto.street"
+          [class.invalidField]="form.get('address')?.touched && form.get('address')?.invalid"
+        />
+      </div>
+      <div class="inputField">
+        <label for="city">Stadt</label>
+        <input
+          id="city"
+          type="text"
+          formControlName="city"
+          [(ngModel)]="employeeDto.city"
+          [class.invalidField]="form.get('city')?.touched && form.get('city')?.invalid"
+        />
+      </div>
+      <div class="inputField">
+        <label for="zip">PLZ</label>
+        <input
+          id="zip"
+          type="text"
+          formControlName="zip"
+          [(ngModel)]="employeeDto.postcode"
+          [class.invalidField]="form.get('zip')?.touched && form.get('zip')?.invalid"
+        />
+      </div>
+      <button *ngIf="!isEditMode" style="margin-top: 3.5vh" class="greenButton" type="submit">Hinzufügen</button>
+      <button *ngIf="isEditMode" style="margin-top: 3.5vh" class="greenButton" type="submit">Speichern</button>
+    </section>
+  </form>
+</div>

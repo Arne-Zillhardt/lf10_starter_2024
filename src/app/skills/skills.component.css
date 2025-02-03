@@ -1,16 +1,4 @@
-/* Allgemeine Einstellungen */
-.skills-container {
-  color: white;
-}
-
-/* Überschrift */
-.skills-container h1 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  color: #ffffff;
-}
-
-/* Neue Skill-Formular */
+/* Neue Skill-Formular
 .new-skill-form {
   display: flex;
   align-items: center;
@@ -19,7 +7,6 @@
 .new-skill-form input {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
   background-color: #333;
@@ -40,57 +27,4 @@
 .new-skill-form button:hover {
   background-color: #45a049;
 }
-
-/* Buttons in der Tabelle */
-button:first-of-type {
-  background-color: #4caf50;
-  color: white;
-}
-
-button:first-of-type:hover {
-  background-color: #45a049;
-}
-
-button:last-of-type {
-  background-color: #f44336;
-  color: white;
-}
-
-button:last-of-type:hover {
-  background-color: #e53935;
-}
-
-/* Pagination (unten) */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.pagination select {
-  padding: 5px 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #333;
-  color: #fff;
-}
-
-.pagination span {
-  color: #fff;
-}
-
-.pagination button {
-  padding: 5px 15px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #3e3e3e;
-  color: #fff;
-}
-
-.pagination button:hover {
-  background-color: #444;
-}
+ */
